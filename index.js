@@ -17,19 +17,23 @@ const argv = program.opts();
 function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case 'list':
-      // ...
+      const contacts = contactsOperations.listContacts();
+      console.table(contacts);
       break;
 
     case 'get':
-      // ... id
+      const contactById = contactsOperations.getContactById(id);
+      console.log(contactById);
       break;
 
     case 'add':
-      // ... name email phone
+      const newContact = contactsOperations.addContact(name, email, phone);
+      console.log(newContact);
       break;
 
     case 'remove':
-      // ... id
+      const removeContact = contactsOperations.removeContact(id);
+      console.log(removeContact);
       break;
 
     default:
@@ -37,4 +41,5 @@ function invokeAction({ action, id, name, email, phone }) {
   }
 }
 
+console.log(argv);
 invokeAction(argv);
